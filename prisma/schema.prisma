@@ -16,7 +16,7 @@ name String
 email String
 password String
 role String
-contactNo String
+contactNo String @unique
 address String
 profileImg String
 createdAt DateTime @default(now())
