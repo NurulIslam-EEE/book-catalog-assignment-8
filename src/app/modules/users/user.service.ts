@@ -27,6 +27,22 @@ const getSingleUser = async (userId: string): Promise<Users | null> => {
 
   return result;
 };
+
+// update user
+
+const updateUser = async (
+  userId: string,
+  data: Partial<Users>
+): Promise<Users> => {
+  const result = await prisma.users.update({
+    where: {
+      id: userId,
+    },
+    data: data,
+  });
+
+  return result;
+};
 // login user
 const loginUser = async (loginData: {
   contactNo: string;
@@ -79,4 +95,5 @@ export const UserService = {
   getAllUser,
   getSingleUser,
   loginUser,
+  updateUser,
 };

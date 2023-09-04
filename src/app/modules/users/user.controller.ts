@@ -59,6 +59,26 @@ const getSingleUser = async (req: Request, res: Response) => {
   }
 };
 
+// update user
+const updateUser = async (req: Request, res: Response) => {
+  try {
+    const result = await UserService.updateUser(req.params.id, req.body);
+
+    res.status(200).send({
+      success: true,
+      statusCode: 200,
+      message: "User updated successfully",
+      data: result,
+    });
+  } catch (err) {
+    res.send({
+      success: false,
+      statusCode: httpStatus.BAD_REQUEST,
+      data: err,
+    });
+  }
+};
+
 const loginUser = async (req: Request, res: Response) => {
   console.log("body", req.body);
   try {
@@ -83,4 +103,5 @@ export const UserController = {
   getUsers,
   loginUser,
   getSingleUser,
+  updateUser,
 };
