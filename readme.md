@@ -28,7 +28,7 @@
 
 <li>  /api/v1/books/create-book (POST) → Only Allowed For Admin</li>
 <li>/api/v1/books (GET)</li>
-<li> </li>
+<li>/api/v1/books/:id (GET)  </li>
 <li></li>
 <li> </li>
 <li>  </li>
