@@ -27,4 +27,17 @@ updatedAt DateTime @updatedAt
 model Category{
     id String @id @default(uuid()) 
     title String
+    books Book[]
+}
+
+model Book{
+   id String @id @default(uuid()) 
+  title String
+  author String
+  genre String
+  price String
+  publicationDate String
+  categoryId String
+    category Category @relation(fields: [categoryId],references: [id])
+
 }

@@ -4,6 +4,7 @@ import express, { Application, NextFunction, Request, Response } from "express";
 import cookieParser from "cookie-parser";
 import { UserRoute } from "./app/modules/users/user.route";
 import { CategoryRoute } from "./app/modules/category/category.route";
+import { BookRoute } from "./app/modules/books/books.route";
 
 const app: Application = express();
 
@@ -20,6 +21,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/api/v1/users", UserRoute);
 app.use("/api/v1/auth", UserRoute);
 app.use("/api/v1/categories", CategoryRoute);
+app.use("/api/v1/books", BookRoute);
 
 app.get("/", async (req: Request, res: Response, next: NextFunction) => {
   res.status(httpStatus.OK).json({
