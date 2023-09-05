@@ -79,6 +79,27 @@ const updateUser = async (req: Request, res: Response) => {
   }
 };
 
+// delete user
+
+const deleteUser = async (req: Request, res: Response) => {
+  try {
+    const result = await UserService.deleteUser(req.params.id);
+
+    res.status(200).send({
+      success: true,
+      statusCode: 200,
+      message: "User deleted successfully",
+      data: result,
+    });
+  } catch (err) {
+    res.send({
+      success: false,
+      statusCode: httpStatus.BAD_REQUEST,
+      data: err,
+    });
+  }
+};
+
 const loginUser = async (req: Request, res: Response) => {
   console.log("body", req.body);
   try {
@@ -104,4 +125,5 @@ export const UserController = {
   loginUser,
   getSingleUser,
   updateUser,
+  deleteUser,
 };

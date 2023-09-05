@@ -3,6 +3,7 @@ import httpStatus from "http-status";
 import express, { Application, NextFunction, Request, Response } from "express";
 import cookieParser from "cookie-parser";
 import { UserRoute } from "./app/modules/users/user.route";
+import { CategoryRoute } from "./app/modules/category/category.route";
 
 const app: Application = express();
 
@@ -18,6 +19,7 @@ app.use(express.urlencoded({ extended: true }));
 
 app.use("/api/v1/users", UserRoute);
 app.use("/api/v1/auth", UserRoute);
+app.use("/api/v1/categories", CategoryRoute);
 
 app.get("/", async (req: Request, res: Response, next: NextFunction) => {
   res.status(httpStatus.OK).json({
