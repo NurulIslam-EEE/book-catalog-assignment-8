@@ -81,9 +81,29 @@ const updateSingleCategory = async (req: Request, res: Response) => {
   }
 };
 
+const deleteSingleCategory = async (req: Request, res: Response) => {
+  try {
+    const result = await CategoryService.deleteSingleCategory(req.params.id);
+
+    res.status(200).send({
+      success: true,
+      statusCode: 200,
+      message: "Category deleted successfully",
+      data: result,
+    });
+  } catch (err) {
+    res.send({
+      success: false,
+      statusCode: httpStatus.BAD_REQUEST,
+      data: err,
+    });
+  }
+};
+
 export const CategoryController = {
   createCategory,
   getAllCategory,
   getSingleCategory,
   updateSingleCategory,
+  deleteSingleCategory,
 };
