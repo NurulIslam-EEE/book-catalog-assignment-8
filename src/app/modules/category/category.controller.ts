@@ -21,4 +21,23 @@ const createCategory = async (req: Request, res: Response) => {
   }
 };
 
-export const CategoryController = { createCategory };
+const getAllCategory = async (req: Request, res: Response) => {
+  try {
+    const result = await CategoryService.getAllCategory();
+
+    res.status(200).send({
+      success: true,
+      statusCode: 200,
+      message: "Categories fetched successfully",
+      data: result,
+    });
+  } catch (err) {
+    res.send({
+      success: false,
+      statusCode: httpStatus.BAD_REQUEST,
+      data: err,
+    });
+  }
+};
+
+export const CategoryController = { createCategory, getAllCategory };
