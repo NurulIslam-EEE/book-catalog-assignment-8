@@ -21,3 +21,15 @@
 <li> /api/v1/categories/:id ( DELETE) → Only Allowed For Admin </li>
 <li>  </li>
  </ul>
+
+## Books Route
+
+ <ul>
+
+<li>  /api/v1/books/create-book (POST) → Only Allowed For Admin</li>
+<li>/api/v1/books (GET)</li>
+<li> </li>
+<li></li>
+<li> </li>
+<li>  </li>
+ </ul>
