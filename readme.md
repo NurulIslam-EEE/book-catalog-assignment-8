@@ -17,5 +17,6 @@
 <li>   /api/v1/categories/create-category (POST) → Only Allowed For Admin </li>
 <li> /api/v1/categories (GET)</li>
 <li> /api/v1/users/:id (GET) </li>
+<li> /api/v1/categories/:id (PATCH) → Only Allowed For Admin </li>
 <li>  </li>
  </ul>
