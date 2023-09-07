@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import { UserRoute } from "./app/modules/users/user.route";
 import { CategoryRoute } from "./app/modules/category/category.route";
 import { BookRoute } from "./app/modules/books/books.route";
+import { OrdersRoute } from "./app/modules/orders/orders.route";
 
 const app: Application = express();
 
@@ -22,6 +23,7 @@ app.use("/api/v1/users", UserRoute);
 app.use("/api/v1/auth", UserRoute);
 app.use("/api/v1/categories", CategoryRoute);
 app.use("/api/v1/books", BookRoute);
+app.use("/api/v1/orders", OrdersRoute);
 
 app.get("/", async (req: Request, res: Response, next: NextFunction) => {
   res.status(httpStatus.OK).json({

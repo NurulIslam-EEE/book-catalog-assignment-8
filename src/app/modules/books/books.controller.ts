@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import httpStatus from "http-status";
 import { BookService } from "./books.service";
+import pick from "../../../shared/pick";
 
 const createBook = async (req: Request, res: Response) => {
   try {
@@ -22,6 +23,14 @@ const createBook = async (req: Request, res: Response) => {
 };
 
 const getAllBook = async (req: Request, res: Response) => {
+  const paginationOptions = pick(req.query, [
+    "page",
+    "limit",
+    "sortBy",
+    "sortOrder",
+  ]);
+
+  console.log("pagggg", paginationOptions);
   try {
     const result = await BookService.getAllBooks();
 
@@ -34,6 +43,12 @@ const getAllBook = async (req: Request, res: Response) => {
   } catch (err) {
     res.send({
       success: false,
+      meta: {
+        page: 3,
+        size: 10,
+        total: 95,
+        totalPage: 10,
+      },
       statusCode: httpStatus.BAD_REQUEST,
       data: err,
     });
