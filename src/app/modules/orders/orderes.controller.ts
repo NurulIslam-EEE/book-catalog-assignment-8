@@ -9,7 +9,7 @@ const createOrder = async (req: Request, res: Response) => {
     res.status(200).send({
       success: true,
       statusCode: 200,
-      message: "Category created successfully!",
+      message: "Order created successfully!",
       data: result,
     });
   } catch (err) {
