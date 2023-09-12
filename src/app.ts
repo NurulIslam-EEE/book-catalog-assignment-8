@@ -28,7 +28,7 @@ app.use("/api/v1/orders", OrdersRoute);
 app.get("/", async (req: Request, res: Response, next: NextFunction) => {
   res.status(httpStatus.OK).json({
     success: true,
-    message: "Welcome to the PC Builder API",
+    message: "Welcome to Book Catalog API",
   });
 });
 

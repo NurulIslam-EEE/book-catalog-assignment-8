@@ -101,7 +101,7 @@ const deleteUser = async (req: Request, res: Response) => {
 };
 
 const loginUser = async (req: Request, res: Response) => {
-  console.log("body", req.body);
+  // console.log("body", req.body);
   try {
     const result = await UserService.loginUser(req.body);
     res.status(200).send({
