@@ -34,3 +34,12 @@
 <li> </li>
 <li>  </li>
  </ul>
+
+## Orders
+
+ <ul>
+ <li>https://book-catalog-assignment-8.vercel.app/api/v1/orders/create-order (POST)</li>
+ <li>https://book-catalog-assignment-8.vercel.app/api/v1/orders (GET)</li>
+ <li>https://book-catalog-assignment-8.vercel.app/api/v1/orders/:orderId (GET)</li>
+ <li></li>
+ </ul>

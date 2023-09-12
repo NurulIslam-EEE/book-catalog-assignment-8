@@ -42,4 +42,29 @@ const getAlOrder = async (req: Request, res: Response) => {
   }
 };
 
-export const OrdersController = { createOrder, getAlOrder };
+const getSingleOrder = async (req: Request, res: Response) => {
+  try {
+    const result = await OrderService.getSingleOrder(
+      req?.params.id,
+      req?.user?.role,
+      req?.user?.id
+    );
+
+    console.log("userrr", req.user);
+
+    res.status(200).send({
+      success: true,
+      statusCode: 200,
+      message: "Orders retrieved successfully",
+      data: result,
+    });
+  } catch (err) {
+    res.send({
+      success: false,
+      statusCode: httpStatus.BAD_REQUEST,
+      data: err,
+    });
+  }
+};
+
+export const OrdersController = { createOrder, getAlOrder, getSingleOrder };

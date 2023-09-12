@@ -52,4 +52,24 @@ const getAlOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
         });
     }
 });
-exports.OrdersController = { createOrder, getAlOrder };
+const getSingleOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a, _b;
+    try {
+        const result = yield orders_service_1.OrderService.getSingleOrder(req === null || req === void 0 ? void 0 : req.params.id, (_a = req === null || req === void 0 ? void 0 : req.user) === null || _a === void 0 ? void 0 : _a.role, (_b = req === null || req === void 0 ? void 0 : req.user) === null || _b === void 0 ? void 0 : _b.id);
+        console.log("userrr", req.user);
+        res.status(200).send({
+            success: true,
+            statusCode: 200,
+            message: "Orders retrieved successfully",
+            data: result,
+        });
+    }
+    catch (err) {
+        res.send({
+            success: false,
+            statusCode: http_status_1.default.BAD_REQUEST,
+            data: err,
+        });
+    }
+});
+exports.OrdersController = { createOrder, getAlOrder, getSingleOrder };

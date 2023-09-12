@@ -37,7 +37,7 @@ app.use("/api/v1/orders", orders_route_1.OrdersRoute);
 app.get("/", (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     res.status(http_status_1.default.OK).json({
         success: true,
-        message: "Welcome to the PC Builder API",
+        message: "Welcome to Book Catalog API",
     });
 }));
 //handle not found

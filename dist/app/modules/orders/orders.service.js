@@ -26,7 +26,28 @@ const getAllOrder = () => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield prisma.order.findMany();
     return result;
 });
+const getSingleOrder = (id, role, userId) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log("iiiiii", id, role);
+    let result;
+    if ((role = "customer")) {
+        result = yield prisma.order.findUnique({
+            where: {
+                id: id,
+                userId: userId,
+            },
+        });
+    }
+    else {
+        result = yield prisma.order.findUnique({
+            where: {
+                id: id,
+            },
+        });
+    }
+    return result;
+});
 exports.OrderService = {
     createOrder,
     getAllOrder,
+    getSingleOrder,
 };
