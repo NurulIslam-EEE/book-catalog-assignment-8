@@ -2,6 +2,7 @@ import { Request, Response } from "express";
 import httpStatus from "http-status";
 import { BookService } from "./books.service";
 import pick from "../../../shared/pick";
+import { paginationHelpers } from "../../../helpers/paginationHelpers";
 
 const createBook = async (req: Request, res: Response) => {
   try {
@@ -26,29 +27,30 @@ const getAllBook = async (req: Request, res: Response) => {
   const paginationOptions = pick(req.query, [
     "page",
     "limit",
+    "size",
     "sortBy",
+
     "sortOrder",
   ]);
 
-  console.log("pagggg", paginationOptions);
+  const pagination = paginationHelpers.calculatePagination(paginationOptions);
+
+  console.log("pagggg", paginationOptions, pagination);
   try {
-    const result = await BookService.getAllBooks();
+    const result = await BookService.getAllBooks(pagination);
 
     res.status(200).send({
       success: true,
       statusCode: 200,
+
       message: "Books fetched successfully!",
-      data: result,
+      meta: result.meta,
+      data: result.data,
     });
   } catch (err) {
     res.send({
       success: false,
-      meta: {
-        page: 3,
-        size: 10,
-        total: 95,
-        totalPage: 10,
-      },
+
       statusCode: httpStatus.BAD_REQUEST,
       data: err,
     });
