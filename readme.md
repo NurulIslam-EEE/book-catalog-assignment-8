@@ -17,7 +17,7 @@
 
 <li>   https://book-catalog-assignment-8.vercel.app/api/v1/categories/create-category (POST) → Only Allowed For Admin </li>
 <li> https://book-catalog-assignment-8.vercel.app/api/v1/categories (GET)</li>
-<li> https://book-catalog-assignment-8.vercel.app/api/v1/users/:id (GET) </li>
+<li> https://book-catalog-assignment-8.vercel.app/api/v1/users/ef409eee-ef49-4607-9b2f-110705f33e2d (GET) </li>
 <li> https://book-catalog-assignment-8.vercel.app/api/v1/categories/ef409eee-ef49-4607-9b2f-110705f33e2d (PATCH) → Only Allowed For Admin </li>
 <li> https://book-catalog-assignment-8.vercel.app/api/v1/categories/ef409eee-ef49-4607-9b2f-110705f33e2d( DELETE) → Only Allowed For Admin </li>
 
@@ -29,7 +29,8 @@
 
 <li>  https://book-catalog-assignment-8.vercel.app/api/v1/books/create-book (POST) → Only Allowed For Admin</li>
 <li>https://book-catalog-assignment-8.vercel.app/api/v1/books (GET)</li>
-<li>https://book-catalog-assignment-8.vercel.app/api/v1/books/:id (GET)  </li>
+<li>https://book-catalog-assignment-8.vercel.app/api/v1/books/3b679723-4961-4e36-8e60-3cc5bf6eda67 (GET)  </li>
+<li>https://book-catalog-assignment-8.vercel.app/api/v1/books/3b679723-4961-4e36-8e60-3cc5bf6eda67 (PATCH)  → Only Allowed For Admin </li>
 
  </ul>
 
