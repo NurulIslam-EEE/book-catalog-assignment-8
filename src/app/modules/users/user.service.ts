@@ -14,7 +14,7 @@ const createUser = async (data: Users): Promise<Users> => {
 };
 
 const getAllUser = async (): Promise<Users[]> => {
-  const result = await prisma.users.findMany();
+  const result = await prisma.users.findMany({});
 
   return result;
 };

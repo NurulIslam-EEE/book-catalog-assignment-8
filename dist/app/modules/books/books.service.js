@@ -16,13 +16,26 @@ const createBook = (data) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield prisma.book.create({ data });
     return result;
 });
-const getAllBooks = () => __awaiter(void 0, void 0, void 0, function* () {
+const getAllBooks = (paginationData) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield prisma.book.findMany({
+        skip: paginationData.skip,
+        take: paginationData.size,
         include: {
             category: true,
         },
     });
-    return result;
+    const total = yield prisma.book.count();
+    const page = total / (paginationData.size || 1);
+    console.log("tttt", total);
+    return {
+        meta: {
+            page: paginationData.page || 1,
+            size: (paginationData === null || paginationData === void 0 ? void 0 : paginationData.size) || 1,
+            total: total,
+            totalPage: page,
+        },
+        data: result,
+    };
 });
 const getSingleBook = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield prisma.book.findUnique({

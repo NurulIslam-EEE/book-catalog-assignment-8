@@ -8,7 +8,7 @@ const express_1 = __importDefault(require("express"));
 const category_controller_1 = require("./category.controller");
 const auth_1 = __importDefault(require("../../middleWares/auth"));
 const router = express_1.default.Router();
-router.post("/create-category", category_controller_1.CategoryController.createCategory);
+router.post("/create-category", (0, auth_1.default)("admin"), category_controller_1.CategoryController.createCategory);
 router.get("/", category_controller_1.CategoryController.getAllCategory);
 router.get("/:id", category_controller_1.CategoryController.getSingleCategory);
 router.patch("/:id", (0, auth_1.default)("admin"), category_controller_1.CategoryController.updateSingleCategory);

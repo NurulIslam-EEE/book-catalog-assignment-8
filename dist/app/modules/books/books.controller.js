@@ -16,6 +16,7 @@ exports.BookController = void 0;
 const http_status_1 = __importDefault(require("http-status"));
 const books_service_1 = require("./books.service");
 const pick_1 = __importDefault(require("../../../shared/pick"));
+const paginationHelpers_1 = require("../../../helpers/paginationHelpers");
 const createBook = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const result = yield books_service_1.BookService.createBook(req.body);
@@ -38,28 +39,25 @@ const getAllBook = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     const paginationOptions = (0, pick_1.default)(req.query, [
         "page",
         "limit",
+        "size",
         "sortBy",
         "sortOrder",
     ]);
-    console.log("pagggg", paginationOptions);
+    const pagination = paginationHelpers_1.paginationHelpers.calculatePagination(paginationOptions);
+    console.log("pagggg", paginationOptions, pagination);
     try {
-        const result = yield books_service_1.BookService.getAllBooks();
+        const result = yield books_service_1.BookService.getAllBooks(pagination);
         res.status(200).send({
             success: true,
             statusCode: 200,
             message: "Books fetched successfully!",
-            data: result,
+            meta: result.meta,
+            data: result.data,
         });
     }
     catch (err) {
         res.send({
             success: false,
-            meta: {
-                page: 3,
-                size: 10,
-                total: 95,
-                totalPage: 10,
-            },
             statusCode: http_status_1.default.BAD_REQUEST,
             data: err,
         });
