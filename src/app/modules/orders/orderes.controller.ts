@@ -23,7 +23,10 @@ const createOrder = async (req: Request, res: Response) => {
 
 const getAlOrder = async (req: Request, res: Response) => {
   try {
-    const result = await OrderService.getAllOrder();
+    const result = await OrderService.getAllOrder(
+      req?.user?.role,
+      req?.user?.id
+    );
 
     console.log("userrr", req.user);
 

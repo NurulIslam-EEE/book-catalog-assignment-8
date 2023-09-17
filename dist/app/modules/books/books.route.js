@@ -11,6 +11,6 @@ const router = express_1.default.Router();
 router.post("/create-book", (0, auth_1.default)("admin"), books_controller_1.BookController.createBook);
 router.get("/", books_controller_1.BookController.getAllBook);
 router.get("/:id", books_controller_1.BookController.getSingleBook);
-router.patch("/:id", books_controller_1.BookController.updateSingleBook);
-router.delete("/:id", books_controller_1.BookController.deleteSingleBook);
+router.patch("/:id", (0, auth_1.default)("admin"), books_controller_1.BookController.updateSingleBook);
+router.delete("/:id", (0, auth_1.default)("admin"), books_controller_1.BookController.deleteSingleBook);
 exports.BookRoute = router;

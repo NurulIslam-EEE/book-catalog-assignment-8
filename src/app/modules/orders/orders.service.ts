@@ -14,8 +14,23 @@ const createOrder = async (data: Order): Promise<Order> => {
   return result;
 };
 
-const getAllOrder = async (): Promise<Order[]> => {
-  const result = await prisma.order.findMany();
+const getAllOrder = async (role: string, userId: string): Promise<Order[]> => {
+  let result;
+
+  console.log("rrrr", role);
+
+  if ((role = "customer")) {
+    result = await prisma.order.findMany({
+      where: {
+        userId: userId,
+      },
+    });
+  }
+  if ((role = "admin")) {
+    result = await prisma.order.findMany();
+  } else {
+    result = await prisma.order.findMany();
+  }
 
   return result;
 };

@@ -24,7 +24,7 @@ const createUser = (data) => __awaiter(void 0, void 0, void 0, function* () {
     return result;
 });
 const getAllUser = () => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield prisma.users.findMany();
+    const result = yield prisma.users.findMany({});
     return result;
 });
 const getSingleUser = (userId) => __awaiter(void 0, void 0, void 0, function* () {
