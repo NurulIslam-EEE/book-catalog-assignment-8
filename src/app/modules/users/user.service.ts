@@ -101,6 +101,18 @@ const loginUser = async (loginData: {
   };
 };
 
+// user profile
+
+const getUserprofile = async (userId: string): Promise<Users | null> => {
+  const result = await prisma.users.findUnique({
+    where: {
+      id: userId,
+    },
+  });
+
+  return result;
+};
+
 export const UserService = {
   createUser,
   getAllUser,
@@ -108,4 +120,5 @@ export const UserService = {
   loginUser,
   updateUser,
   deleteUser,
+  getUserprofile,
 };

@@ -1,5 +1,11 @@
 # Book Catalog Backend
 
+## userProfile
+
+<ul>
+<li> https://book-catalog-assignment-8.vercel.app/api/v1/profile (Get) → Only for specific user (customer and admin)</li>
+</ul>
+
 ## Users Route
 
  <ul>

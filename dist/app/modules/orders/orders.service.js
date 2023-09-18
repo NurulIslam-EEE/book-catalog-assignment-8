@@ -22,8 +22,22 @@ const createOrder = (data) => __awaiter(void 0, void 0, void 0, function* () {
     });
     return result;
 });
-const getAllOrder = () => __awaiter(void 0, void 0, void 0, function* () {
-    const result = yield prisma.order.findMany();
+const getAllOrder = (role, userId) => __awaiter(void 0, void 0, void 0, function* () {
+    let result;
+    console.log("rrrr", role);
+    if ((role = "customer")) {
+        result = yield prisma.order.findMany({
+            where: {
+                userId: userId,
+            },
+        });
+    }
+    if ((role = "admin")) {
+        result = yield prisma.order.findMany();
+    }
+    else {
+        result = yield prisma.order.findMany();
+    }
     return result;
 });
 const getSingleOrder = (id, role, userId) => __awaiter(void 0, void 0, void 0, function* () {

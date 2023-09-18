@@ -34,8 +34,9 @@ const createOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
 });
 const getAlOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    var _a, _b;
     try {
-        const result = yield orders_service_1.OrderService.getAllOrder();
+        const result = yield orders_service_1.OrderService.getAllOrder((_a = req === null || req === void 0 ? void 0 : req.user) === null || _a === void 0 ? void 0 : _a.role, (_b = req === null || req === void 0 ? void 0 : req.user) === null || _b === void 0 ? void 0 : _b.id);
         console.log("userrr", req.user);
         res.status(200).send({
             success: true,
@@ -53,9 +54,9 @@ const getAlOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 const getSingleOrder = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a, _b;
+    var _c, _d;
     try {
-        const result = yield orders_service_1.OrderService.getSingleOrder(req === null || req === void 0 ? void 0 : req.params.id, (_a = req === null || req === void 0 ? void 0 : req.user) === null || _a === void 0 ? void 0 : _a.role, (_b = req === null || req === void 0 ? void 0 : req.user) === null || _b === void 0 ? void 0 : _b.id);
+        const result = yield orders_service_1.OrderService.getSingleOrder(req === null || req === void 0 ? void 0 : req.params.id, (_c = req === null || req === void 0 ? void 0 : req.user) === null || _c === void 0 ? void 0 : _c.role, (_d = req === null || req === void 0 ? void 0 : req.user) === null || _d === void 0 ? void 0 : _d.id);
         console.log("userrr", req.user);
         res.status(200).send({
             success: true,
