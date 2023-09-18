@@ -14,7 +14,7 @@ const createUser = async (data: Users): Promise<Users> => {
 };
 
 const getAllUser = async (): Promise<Users[]> => {
-  const result = await prisma.users.findMany({});
+  const result = await prisma.users.findMany();
 
   return result;
 };
@@ -101,18 +101,6 @@ const loginUser = async (loginData: {
   };
 };
 
-// user profile
-
-const getUserprofile = async (userId: string): Promise<Users | null> => {
-  const result = await prisma.users.findUnique({
-    where: {
-      id: userId,
-    },
-  });
-
-  return result;
-};
-
 export const UserService = {
   createUser,
   getAllUser,
@@ -120,5 +108,4 @@ export const UserService = {
   loginUser,
   updateUser,
   deleteUser,
-  getUserprofile,
 };

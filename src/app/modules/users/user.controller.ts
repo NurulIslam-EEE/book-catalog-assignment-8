@@ -119,25 +119,6 @@ const loginUser = async (req: Request, res: Response) => {
   }
 };
 
-const getUserprofile = async (req: Request, res: Response) => {
-  try {
-    const result = await UserService.getUserprofile(req?.user?.id);
-
-    res.status(200).send({
-      success: true,
-      statusCode: 200,
-      message: "User getched successfully",
-      data: result,
-    });
-  } catch (err) {
-    res.send({
-      success: false,
-      statusCode: httpStatus.BAD_REQUEST,
-      data: err,
-    });
-  }
-};
-
 export const UserController = {
   createUser,
   getUsers,
@@ -145,5 +126,4 @@ export const UserController = {
   getSingleUser,
   updateUser,
   deleteUser,
-  getUserprofile,
 };

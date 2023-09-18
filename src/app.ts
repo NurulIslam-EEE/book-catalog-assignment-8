@@ -6,6 +6,7 @@ import { UserRoute } from "./app/modules/users/user.route";
 import { CategoryRoute } from "./app/modules/category/category.route";
 import { BookRoute } from "./app/modules/books/books.route";
 import { OrdersRoute } from "./app/modules/orders/orders.route";
+import { AuthRoute } from "./app/modules/auth/auth.route";
 
 const app: Application = express();
 
@@ -19,7 +20,7 @@ app.use(cookieParser());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-app.use("/api/v1/profile", UserRoute);
+app.use("/api/v1/profile", AuthRoute);
 app.use("/api/v1/users", UserRoute);
 app.use("/api/v1/auth", UserRoute);
 app.use("/api/v1/categories", CategoryRoute);
