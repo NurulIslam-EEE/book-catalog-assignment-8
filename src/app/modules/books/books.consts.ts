@@ -9,3 +9,7 @@ export type IPaginationOptions = {
   total?: number;
   totalPage?: number;
 };
+
+export type IBookFiltersOptions = {
+  searchterm?: string;
+};

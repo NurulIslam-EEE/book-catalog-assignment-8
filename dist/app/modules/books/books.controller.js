@@ -36,17 +36,31 @@ const createBook = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     }
 });
 const getAllBook = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const paginationOptions = (0, pick_1.default)(req.query, [
+    const lowercaseKeys = (obj, deep = false) => Object.keys(obj).reduce((acc, key) => {
+        acc[key.toLowerCase()] =
+            deep && typeof obj[key] === "object"
+                ? lowercaseKeys(obj[key])
+                : obj[key];
+        return acc;
+    }, {});
+    const lowerCaseQuery = lowercaseKeys(req.query);
+    const filters = (0, pick_1.default)(lowerCaseQuery, [
+        "minprice",
+        "maxprice",
+        "category",
+        "searchterm",
+    ]);
+    const paginationOptions = (0, pick_1.default)(lowerCaseQuery, [
         "page",
         "limit",
         "size",
-        "sortBy",
-        "sortOrder",
+        "sortby",
+        "sortorder",
     ]);
     const pagination = paginationHelpers_1.paginationHelpers.calculatePagination(paginationOptions);
-    console.log("pagggg", paginationOptions, pagination);
+    console.log("lllllll", filters);
     try {
-        const result = yield books_service_1.BookService.getAllBooks(pagination);
+        const result = yield books_service_1.BookService.getAllBooks(filters, pagination);
         res.status(200).send({
             success: true,
             statusCode: 200,

@@ -126,25 +126,6 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         });
     }
 });
-const getUserprofile = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    var _a;
-    try {
-        const result = yield user_service_1.UserService.getUserprofile((_a = req === null || req === void 0 ? void 0 : req.user) === null || _a === void 0 ? void 0 : _a.id);
-        res.status(200).send({
-            success: true,
-            statusCode: 200,
-            message: "User getched successfully",
-            data: result,
-        });
-    }
-    catch (err) {
-        res.send({
-            success: false,
-            statusCode: http_status_1.default.BAD_REQUEST,
-            data: err,
-        });
-    }
-});
 exports.UserController = {
     createUser,
     getUsers,
@@ -152,5 +133,4 @@ exports.UserController = {
     getSingleUser,
     updateUser,
     deleteUser,
-    getUserprofile,
 };

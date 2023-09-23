@@ -8,6 +8,17 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.BookService = void 0;
 const client_1 = require("@prisma/client");
@@ -16,17 +27,45 @@ const createBook = (data) => __awaiter(void 0, void 0, void 0, function* () {
     const result = yield prisma.book.create({ data });
     return result;
 });
-const getAllBooks = (paginationData) => __awaiter(void 0, void 0, void 0, function* () {
+const getAllBooks = (filter, paginationData) => __awaiter(void 0, void 0, void 0, function* () {
+    const {} = paginationData;
+    const { searchterm } = filter, filterData = __rest(filter, ["searchterm"]);
+    console.log("ffff", filterData);
+    const andCondition = [];
+    if (searchterm) {
+        andCondition.push({
+            OR: ["title", "genre", "author"].map((field) => ({
+                [field]: {
+                    contains: searchterm,
+                    mode: "insensitive",
+                },
+            })),
+        });
+    }
+    if (Object.keys(filterData).length > 0) {
+        andCondition.push({
+            AND: Object.keys(filterData).map((key) => ({
+                [key]: {
+                    equals: filterData[key],
+                },
+            })),
+        });
+    }
+    const whereConditions = andCondition.length > 0 ? { OR: andCondition } : {};
     const result = yield prisma.book.findMany({
+        where: whereConditions,
         skip: paginationData.skip,
         take: paginationData.size,
         include: {
             category: true,
         },
+        orderBy: paginationData.sortBy && paginationData.sortOrder
+            ? { [paginationData.sortBy]: paginationData.sortOrder }
+            : { title: "desc" },
     });
     const total = yield prisma.book.count();
     const page = total / (paginationData.size || 1);
-    console.log("tttt", total);
+    console.log("fff", filter);
     return {
         meta: {
             page: paginationData.page || 1,

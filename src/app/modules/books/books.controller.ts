@@ -24,20 +24,38 @@ const createBook = async (req: Request, res: Response) => {
 };
 
 const getAllBook = async (req: Request, res: Response) => {
-  const paginationOptions = pick(req.query, [
+  type AnyObject = { [key: string]: any };
+  const lowercaseKeys = (obj: AnyObject, deep = false) =>
+    Object.keys(obj).reduce((acc, key) => {
+      acc[key.toLowerCase()] =
+        deep && typeof obj[key] === "object"
+          ? lowercaseKeys(obj[key])
+          : obj[key];
+      return acc;
+    }, {} as AnyObject);
+
+  const lowerCaseQuery = lowercaseKeys(req.query);
+
+  const filters = pick(lowerCaseQuery, [
+    "minprice",
+    "maxprice",
+    "category",
+    "searchterm",
+  ]);
+
+  const paginationOptions = pick(lowerCaseQuery, [
     "page",
     "limit",
     "size",
-    "sortBy",
-
-    "sortOrder",
+    "sortby",
+    "sortorder",
   ]);
 
   const pagination = paginationHelpers.calculatePagination(paginationOptions);
 
-  console.log("pagggg", paginationOptions, pagination);
+  console.log("lllllll", filters);
   try {
-    const result = await BookService.getAllBooks(pagination);
+    const result = await BookService.getAllBooks(filters, pagination);
 
     res.status(200).send({
       success: true,

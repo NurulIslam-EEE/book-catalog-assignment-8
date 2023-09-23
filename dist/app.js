@@ -20,6 +20,7 @@ const user_route_1 = require("./app/modules/users/user.route");
 const category_route_1 = require("./app/modules/category/category.route");
 const books_route_1 = require("./app/modules/books/books.route");
 const orders_route_1 = require("./app/modules/orders/orders.route");
+const auth_route_1 = require("./app/modules/auth/auth.route");
 const app = (0, express_1.default)();
 const corsOptions = {
     origin: true,
@@ -29,7 +30,7 @@ app.use("*", (0, cors_1.default)(corsOptions));
 app.use((0, cookie_parser_1.default)());
 app.use(express_1.default.json());
 app.use(express_1.default.urlencoded({ extended: true }));
-app.use("/api/v1/profile", user_route_1.UserRoute);
+app.use("/api/v1/profile", auth_route_1.AuthRoute);
 app.use("/api/v1/users", user_route_1.UserRoute);
 app.use("/api/v1/auth", user_route_1.UserRoute);
 app.use("/api/v1/categories", category_route_1.CategoryRoute);

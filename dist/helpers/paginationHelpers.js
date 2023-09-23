@@ -6,13 +6,15 @@ const calculatePagination = (options) => {
     const limit = Number(options.limit || 5);
     const size = Number(options.size || 5);
     const skip = (page - 1) * size;
-    const sortBy = options.sortBy || "createdAt";
+    const sortBy = options.sortby || "title";
+    const sortOrder = options.sortorder || "desc";
     return {
         page,
         limit,
         skip,
         size,
         sortBy,
+        sortOrder,
     };
 };
 exports.paginationHelpers = {
